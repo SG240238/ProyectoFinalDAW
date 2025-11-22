@@ -1,0 +1,107 @@
+<!doctype html>
+<html ng-app="tiendaApp">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mi Tienda - AngularJS (sin carrito)</title>
+
+  <!-- tu CSS -->
+  <link rel="stylesheet" href="Estructura.css" />
+
+  <!-- AngularJS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+  <script src="Estructura.js"></script>
+</head>
+
+<!-- body ahora usa flex para permitir footer sticky -->
+<body ng-controller="MainCtrl as vm" class="app-body">
+
+  <div class="app-root">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="brand">Mi Tienda</div>
+    </header>
+
+    <!-- HERO / BANNER (full-width) -->
+    <section class="hero">
+      <!-- uso la imagen subida localmente para pruebas -->
+      <img class="hero-img" src="Imagenes/Banner.jpg" alt="Banner">
+    </section>
+
+    <!-- CONTROLS (categoria / busqueda) -->
+    <section class="controls">
+      <div class="left">
+        <span class="label">Productos de la categoría:</span>
+        <strong class="category-name">{{ vm.selectedCategory || 'Todos' }}</strong>
+      </div>
+      <div class="right">
+        <input type="text" placeholder="Buscar..." ng-model="vm.searchText" class="search-input">
+        <select ng-model="vm.selectedCategory" class="select-cat">
+          <option value="">Todas</option>
+          <option ng-repeat="c in vm.categories">{{c}}</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- PRODUCT GRID -->
+    <main class="product-area">
+      <div class="grid">
+        <div class="card" ng-repeat="p in vm.products | filter:vm.filterByCategoryAndText">
+          <div class="card-image">
+            <img ng-src="{{ p.image || '/mnt/data/65a25ea4-5519-46d2-b745-46b93db9c1cb.png' }}" alt="{{p.name}}">
+          </div>
+
+          <div class="card-body">
+            <div class="card-head">
+              <div class="title">{{ p.name }}</div>
+              <div class="price">${{ p.price | number:2 }}</div>
+            </div>
+
+            <div class="desc">{{ p.description }}</div>
+
+            <div class="card-foot">
+              <button class="tag">{{ p.category }}</button>
+              <div class="actions">
+                <button class="detail-btn" ng-click="vm.viewDetails(p)">DETALLES</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </div> <!-- end app-root -->
+
+  <!-- FOOTER (sticky bottom) -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <strong>Mi Tienda</strong> — Todos los derechos reservados © <span id="year"></span>
+      </div>
+      <div class="footer-right">
+        Contacto: soporte@mitienda.com &nbsp;|&nbsp; Tel: +503 7000 0000
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL DETALLE -->
+  <div class="modal" ng-show="vm.detail">
+    <div class="modal-card">
+      <button class="close" ng-click="vm.closeDetail()">×</button>
+      <img class="modal-img" ng-src="{{ vm.detail.image || '/mnt/data/65a25ea4-5519-46d2-b745-46b93db9c1cb.png' }}" alt="">
+      <h3>{{ vm.detail.name }}</h3>
+      <p class="modal-desc">{{ vm.detail.description }}</p>
+      <p class="modal-price">Precio: ${{ vm.detail.price | number:2 }}</p>
+      <div class="modal-actions">
+        <button ng-click="vm.closeDetail()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
