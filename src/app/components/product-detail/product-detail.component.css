@@ -1,0 +1,82 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 1000;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 92%;
+  max-width: 880px;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 1rem;
+  overflow: hidden;
+  z-index: 1001;
+}
+
+.media {
+  background: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.media img {
+  max-width: 100%;
+  max-height: 360px;
+  object-fit: contain;
+}
+
+.body {
+  padding: 1.2rem 1.2rem 1.4rem;
+}
+
+.body h2 {
+  margin: 0 0 0.6rem;
+  font-size: 1.3rem;
+}
+
+.desc {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  margin-bottom: 0.8rem;
+}
+
+.price {
+  color: #1a7f37;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: flex-end;
+}
+
+.btn {
+  padding: 0.55rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: #007bff;
+  color: #fff;
+}
+
+.btn.outline {
+  background: #fff;
+  border-color: #ccc;
+}

@@ -1,0 +1,27 @@
+<div class="filtros">
+  <input
+    type="text"
+    placeholder="Buscar productos..."
+    [(ngModel)]="filtro"
+  />
+</div>
+
+<div class="grid">
+  <div
+    class="card"
+    *ngFor="let producto of filtrar(productos)"
+    (click)="mostrarDetalle(producto)"
+  >
+    <img [src]="producto.image" [alt]="producto.title" />
+    <div class="info">
+      <h3>{{ producto.title }}</h3>
+      <p class="price">$ {{ producto.price }}</p>
+    </div>
+  </div>
+</div>
+
+<app-product-detail
+  *ngIf="selectedProduct"
+  [producto]="selectedProduct"
+  (cerrar)="cerrarModalDetalle()">
+</app-product-detail>
