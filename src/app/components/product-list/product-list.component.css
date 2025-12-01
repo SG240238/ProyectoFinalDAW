@@ -52,3 +52,10 @@
   color: #1a7f37;
   font-weight: 600;
 }
+
+.desc {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  margin-bottom: 0.8rem;
+}

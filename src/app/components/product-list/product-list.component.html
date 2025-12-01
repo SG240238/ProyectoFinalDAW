@@ -1,9 +1,19 @@
-<div class="filtros">
-  <input
-    type="text"
-    placeholder="Buscar productos..."
-    [(ngModel)]="filtro"
-  />
+<div class="filtros" style="display: flex; justify-content: space-between; align-items: center;">
+  <p class="mb-0 text-muted small">Productos de la categoría: <strong id="idNombreCategoria">{{ selectedCategory ? (selectedCategory | titlecase) : 'Todas' }}</strong></p>
+
+  <div style="display: flex; gap: 10px; align-items: center;">
+    <input
+      type="text"
+      placeholder="Buscar productos..."
+      [(ngModel)]="filtro"
+      (keyup.enter)="onSearch()"
+      style="width: 400px;"  
+    />
+    <select id="idCategoria" [(ngModel)]="selectedCategory" (ngModelChange)="onCategoryChange()" class="form-select form-select-sm" style="max-width:140px; height: 38px; border-radius: 8px;">
+      <option value="">Todas</option>
+      <option *ngFor="let category of categories" [value]="category">{{ category | titlecase }}</option>
+    </select>
+  </div>
 </div>
 
 <div class="grid">
@@ -16,6 +26,7 @@
     <div class="info">
       <h3>{{ producto.title }}</h3>
       <p class="price">$ {{ producto.price }}</p>
+      <p class="desc">{{ producto.description && producto.description.length > 100 ? (producto.description | slice:0:100) + '...' : producto.description }}</p>
     </div>
   </div>
 </div>
