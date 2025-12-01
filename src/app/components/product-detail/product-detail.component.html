@@ -1,0 +1,18 @@
+<div class="modal-backdrop" (click)="cancelar()"></div>
+
+<div class="modal">
+  <div class="media">
+    <img [src]="producto.image" [alt]="producto.title" />
+  </div>
+
+  <div class="body">
+    <h2>{{ producto.title }}</h2>
+    <p class="desc">{{ producto.description }}</p>
+    <p class="price">$ {{ producto.price }}</p>
+
+    <div class="actions">
+      <button class="btn outline" (click)="cancelar()">Cancelar</button>
+      <button class="btn primary" (click)="agregarAlCarrito()">Agregar</button>
+    </div>
+  </div>
+</div>
