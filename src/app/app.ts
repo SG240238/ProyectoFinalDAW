@@ -14,7 +14,7 @@ import { CartService } from './services/cart.service';
         🛒 <span class="contador">{{ cantidadCarrito }}</span>
       </div>
 
-      <h1 class="titulo">🛍️ Proyecto Fase Final</h1>
+      <h1 class="titulo">🛍️ Bienvenidos a UrbanStore</h1>
 
       <app-product-list></app-product-list>
 
